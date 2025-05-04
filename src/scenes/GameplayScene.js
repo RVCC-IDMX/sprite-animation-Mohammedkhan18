@@ -17,11 +17,8 @@ export default class GameplayScene extends Phaser.Scene {
    * Create game objects and set up the gameplay
    */
   create() {
-    // Add background images
-    this.bg1 = this.add.tileSprite(0, 0, 1200, 600, 'sky').setOrigin(0, 0);
-    this.bg2 = this.add.tileSprite(0, 0, 1200, 600, 'mountains').setOrigin(0, 0);
-    this.bg3 = this.add.tileSprite(0, 0, 1200, 600, 'ground').setOrigin(0, 0);
-
+    // Add background image
+    this.add.image(600, 300, 'background').setDisplaySize(1200, 600);
 
     // Create animations
     this.createAnimations();
@@ -100,19 +97,15 @@ export default class GameplayScene extends Phaser.Scene {
     }
     // No movement or at edge
     else {
-      // Play idle animation instead of stopping
+    // Play idle animation instead of stopping
       this.player.anims.play('idle', true);
     }
-    // Move backgrounds for parallax effect (slower = farther away)
-    this.bg1.tilePositionX += 0.1;  // Sky moves very slowly
-    this.bg2.tilePositionX += 0.3;  // Mountains move a bit faster
-    this.bg3.tilePositionX += 0.5;  // Ground moves the fastest
   }
   /**
  * Create and configure the player character
  */
   createPlayer() {
-    // Add player sprite at the left side of the screen
+  // Add player sprite at the left side of the screen
     this.player = this.physics.add.sprite(170, 450, 'character');
 
     // Scale the player down (the cat sprite is quite large)
